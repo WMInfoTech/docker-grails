@@ -1,9 +1,13 @@
-FROM java:7
+FROM openjdk:7-jdk-alpine
 MAINTAINER Phil Fenstermacher <pcfens@wm.edu>
 
 # Set customizable env vars defaults.
 # Set Grails version (max version for this Docker image is: 2.5.3).
 ENV GRAILS_VERSION 2.5.0
+
+RUN apk update && \
+    apk add ca-certificates wget && \
+    update-ca-certificates
 
 # Install Grails
 WORKDIR /usr/lib/jvm
